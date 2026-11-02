@@ -156,7 +156,7 @@ COPY postgres?.yml $PGHOME/
 WORKDIR $PGHOME
 
 RUN sed -i 's/\r$//' /entrypoint.sh \
-    && sed -i 's/env python/&3/' /patroni*.py \
+    && sed -i '1s|env python[0-9]*|env python3|' /patroni*.py \
     # "fix" patroni configs
     && sed -i 's/^  listen: 127.0.0.1/  listen: 0.0.0.0/' postgres?.yml \
     && sed -i "s|^\(  data_dir: \).*|\1$PGDATA|" postgres?.yml \

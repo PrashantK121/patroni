@@ -83,3 +83,13 @@ services:
         environment:
             <<: *haproxy_env
             PATRONI_NAME: patroni3
+    
+    patroni4:
+        image: ${PATRONI_TEST_IMAGE:-patroni}
+        networks: [ demo ]
+        env_file: docker/patroni.env
+        hostname: patroni4
+        container_name: demo-patroni4
+        environment:
+            <<: *haproxy_env
+            PATRONI_NAME: patroni4
